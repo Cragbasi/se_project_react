@@ -1,11 +1,11 @@
 import { useContext } from "react";
-import { Routes, Route } from "react-router-dom";
+
 import { CurrentTemperatureUnitContext } from "../contexts/CurrentTemperatureUnitContext.jsx";
 import "../blocks/Main.css";
 import WeatherCard from "./WeatherCard";
 import ItemCard from "./ItemCard";
 
-function Main({ weatherData, defaultClothingItems, onCardClick }) {
+function Main({ weatherData, defaultClothingItems, onCardClick, onCardLike }) {
   if (!weatherData) {
     return <div>Loading...</div>;
   }
@@ -39,6 +39,7 @@ function Main({ weatherData, defaultClothingItems, onCardClick }) {
             weatherData={weatherData}
             defaultClothingItems={defaultClothingItems}
             onCardClick={onCardClick}
+            onCardLike={onCardLike}
           />
         ))}
       </ul>

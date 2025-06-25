@@ -127,7 +127,6 @@ const AddItemModal = ({ isOpen, onAddItem, onClose }) => {
             </label>
           </div>
         </fieldset>
-        {/* Add similar input fields for Link and weather */}
       </ModalWithForm>
     </>
   );

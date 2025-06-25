@@ -6,6 +6,7 @@ function ClothesSection({
   defaultClothingItems,
   onCardClick,
   onOpenModal,
+  onCardLike,
 }) {
   if (!weatherData) {
     return <div>Loading...</div>;
@@ -32,6 +33,7 @@ function ClothesSection({
             weatherData={weatherData}
             defaultClothingItems={defaultClothingItems}
             onCardClick={onCardClick}
+            onCardLike={onCardLike}
           />
         ))}
       </ul>

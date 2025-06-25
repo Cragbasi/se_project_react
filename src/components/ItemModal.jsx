@@ -1,7 +1,25 @@
 import "../blocks/ItemModal.css";
 import closeImage from "../assets/closeImage.svg";
-import { useEffect } from "react";
-function ItemModal({ isOpen, onClose, name, weather, link, handleDelete }) {
+import { useEffect, useContext } from "react";
+import CurrentUserContext from "../contexts/CurrentUserContext";
+function ItemModal({
+  isOpen,
+  onClose,
+  name,
+  weather,
+  link,
+  owner,
+  handleDelete,
+}) {
+  const currentUser = useContext(CurrentUserContext);
+  // Checking if the current user is the owner of the current clothing item
+  const isOwn = owner === currentUser._id;
+
+  // Creating a variable which you'll then set in `className` for the delete button
+  const itemDeleteButtonClassName = `image-modal__delete-button ${
+    isOwn ? "" : "image-modal__delete-button_hidden"
+  }`;
+
   const handleOverlayClick = (e) => {
     if (e.target === e.currentTarget) {
       onClose();
@@ -41,7 +59,7 @@ function ItemModal({ isOpen, onClose, name, weather, link, handleDelete }) {
           <button
             type="button"
             id="deleteImageButton"
-            className="image-modal__delete-button"
+            className={itemDeleteButtonClassName}
             onClick={handleDelete}
           >
             Delete item

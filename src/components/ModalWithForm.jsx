@@ -47,7 +47,6 @@ function ModalWithForm({
           <button
             type="submit"
             className="modal__button-save modal__button-save_disabled"
-            // disabled
           >
             {buttonText}
           </button>

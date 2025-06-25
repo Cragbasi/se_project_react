@@ -28,6 +28,23 @@
   transition: opacity 1s ease-out;
 }
 
+.modal_type_sign-up {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 1s ease-out;
+}
+.modal_type_update-profile {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 1s ease-out;
+}
+
+.modal_type_log-in {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 1s ease-out;
+}
+
 .modal__container {
   margin: 0;
   background-color: #ffffff;
@@ -144,10 +161,24 @@
   font-weight: 700;
   line-height: 20px;
   background-color: #212121;
-  max-width: 124px;
+  max-width: fit-content;
+  padding: 0 16px;
   height: 36px;
   border-radius: 8px;
   color: #fcf5e5;
+  white-space: nowrap;
+}
+
+.modal__button-save_log-in {
+  background-color: white;
+  /* background-color: red; */
+  border: none;
+  color: #00000080;
+  opacity: 0.5;
+  position: absolute;
+  max-width: 80px;
+  left: 116px;
+  bottom: 28px;
 }
 .modal__button-save:hover {
   opacity: 80%;

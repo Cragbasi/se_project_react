@@ -18,24 +18,58 @@
   width: 328px;
   height: 328px;
   border-radius: 19px;
+  cursor: pointer;
 }
 
+.item-card__header-container {
+  position: absolute;
+  top: 15px;
+  left: 125px;
+  display: flex;
+  flex-direction: row;
+
+  align-items: center;
+}
 .item-card__title {
   margin: 0;
   padding: 0;
   font-size: 16px;
-  /* line-height: 20px; */
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
   max-width: 250px;
-  position: absolute;
-  width: 73px;
+  width: 53px;
   height: 24px;
-  top: 15px;
-  left: 125px;
   border-radius: 4px;
   background-color: #ffffff;
   color: #00000099;
   text-align: center;
+}
+
+.item-card__love-button {
+  margin: 2px 0 0 10px;
+  background-image: url("../assets/like1.svg");
+  background-repeat: no-repeat;
+  background-color: transparent;
+  border: none;
+  width: 23px;
+  height: 20px;
+  opacity: 40%;
+  padding: 0;
+}
+
+.item-card__love-button:hover {
+  opacity: 100%;
+  cursor: pointer;
+}
+
+.item-card__love-button_activated {
+  background-color: transparent;
+  opacity: 100%;
+  background-image: url("../assets/like2.svg");
+}
+
+.item-card__love-button_activated:hover {
+  background-image: url("../assets/like2.svg");
+  opacity: 50%;
 }
