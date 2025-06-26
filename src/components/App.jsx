@@ -24,16 +24,17 @@ import ProtectedRoute from "../utils/ProtectedRoute";
 import { ApiForAuthentication } from "../utils/auth.js";
 import { setToken, getToken } from "../utils/token.js";
 
+const apiClothingItems = new ApiForClothingItems({
+  baseUrl: "http://localhost:3001/items",
+});
+const apiForAuthentication = new ApiForAuthentication({
+  baseUrl: "http://localhost:3001",
+});
+
 function App() {
   // Add the isLoggedIn state variable with default value of 'false'.
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const apiClothingItems = new ApiForClothingItems({
-    baseUrl: "http://localhost:3001/items",
-  });
-  const apiForAuthentication = new ApiForAuthentication({
-    baseUrl: "http://localhost:3001",
-  });
   const [clothingItems, setClothingItems] = useState(defaultClothingItems);
 
   const handleAddItem = (item) => {
@@ -176,11 +177,9 @@ function App() {
       .then((res) => {
         console.log("New name and avatar:", res);
         handleCloseEditProfileModal();
-        if (res.token) {
-          // Save the token to local storage
-          // setCurrentUser(res);
-          setCurrentUser((prevItems) => [res, ...prevItems]);
-        }
+        setCurrentUser((prevItems) => {
+          return { ...prevItems, ...res };
+        });
       })
       .catch((err) => {
         console.error("API error:", err);

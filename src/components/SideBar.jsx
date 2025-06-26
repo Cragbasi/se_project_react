@@ -1,7 +1,10 @@
+import React, { useContext } from "react";
 import "../blocks/Profile.css";
+import CurrentUserContext from "../contexts/CurrentUserContext";
 // import Avatar from "../assets/Avatar.svg";
 
-function SideBar({ currentUser, onOpenEditProfileModal, signOut }) {
+function SideBar({ onOpenEditProfileModal, signOut }) {
+  const currentUser = useContext(CurrentUserContext);
   return (
     <div className="profile__side-bar">
       <div className="profile__info-container">

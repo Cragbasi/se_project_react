@@ -14,15 +14,9 @@ const LoginModal = ({ isOpen, onLogIn, onClose, onOpenSignUpModal }) => {
   useEffect(() => {
     if (!isOpen) return; // stop the effect if the modal is not open
 
-    window.addEventListener("keydown", handleEnterKey);
-
     // Reset input fields and clean up the event listener
     setEmail("");
     setPassword("");
-
-    return () => {
-      window.removeEventListener("keydown", handleEnterKey);
-    };
   }, [isOpen, onClose]); // watch isOpen to add the listeners only when the modal is open
 
   // create onChange handlers corresponding to each state variable
@@ -40,12 +34,6 @@ const LoginModal = ({ isOpen, onLogIn, onClose, onOpenSignUpModal }) => {
     const submittedData = { email, password };
     onLogIn(submittedData);
   }
-
-  const handleEnterKey = (e) => {
-    if (e.key === "Enter") {
-      handleSubmit(e); // Call submit handler
-    }
-  };
 
   return (
     <>
@@ -76,7 +64,6 @@ const LoginModal = ({ isOpen, onLogIn, onClose, onOpenSignUpModal }) => {
           name="email"
           value={email}
           onChange={handleEmailChange}
-          onKeyDown={handleEnterKey}
         />
         <label htmlFor="password" className="modal__input-label">
           Pasword*
@@ -90,11 +77,10 @@ const LoginModal = ({ isOpen, onLogIn, onClose, onOpenSignUpModal }) => {
           name="password"
           value={password}
           onChange={handlePasswordChange}
-          onKeyDown={handleEnterKey}
         />
 
         <button
-          type="submit"
+          type="button"
           className="modal__button-save modal__button-save_log-in"
           onClick={() => {
             onOpenSignUpModal();

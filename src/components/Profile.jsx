@@ -20,7 +20,6 @@ function Profile({
   return (
     <div className="profile">
       <SideBar
-        currentUser={currentUser}
         onOpenEditProfileModal={onOpenEditProfileModal}
         signOut={signOut}
       />

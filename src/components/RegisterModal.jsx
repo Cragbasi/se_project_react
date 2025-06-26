@@ -19,12 +19,6 @@ const RegisterModal = ({ isOpen, onSignUp, onClose, onOpenLoginModal }) => {
     setLink("");
     setEmail("");
     setPassword("");
-
-    window.addEventListener("keydown", handleEnterKey);
-
-    return () => {
-      window.removeEventListener("keydown", handleEnterKey);
-    };
   }, [isOpen, onClose]); // watch isOpen to add the listeners only when the modal is open
 
   // create onChange handlers corresponding to each state variable
@@ -50,11 +44,6 @@ const RegisterModal = ({ isOpen, onSignUp, onClose, onOpenLoginModal }) => {
     onSignUp(submittedData);
   }
 
-  const handleEnterKey = (e) => {
-    if (e.key === "Enter") {
-      handleSubmit(e); // Call submit handler
-    }
-  };
   return (
     <>
       {/* don't forget to pass appropriate props to ModalWithForm */}
@@ -84,7 +73,6 @@ const RegisterModal = ({ isOpen, onSignUp, onClose, onOpenLoginModal }) => {
           name="email"
           value={email}
           onChange={handleEmailChange}
-          onKeyDown={handleEnterKey}
         />
         <label htmlFor="password" className="modal__input-label">
           Pasword*
@@ -98,7 +86,6 @@ const RegisterModal = ({ isOpen, onSignUp, onClose, onOpenLoginModal }) => {
           name="password"
           value={password}
           onChange={handlePasswordChange}
-          onKeyDown={handleEnterKey}
         />
         <label htmlFor="name" className="modal__input-label">
           {" "}
@@ -115,7 +102,6 @@ const RegisterModal = ({ isOpen, onSignUp, onClose, onOpenLoginModal }) => {
           name="name"
           value={name}
           onChange={handleNameChange}
-          onKeyDown={handleEnterKey}
         />
         <label htmlFor="avatar" className="modal__input-label">
           Avatar URL *
@@ -129,17 +115,15 @@ const RegisterModal = ({ isOpen, onSignUp, onClose, onOpenLoginModal }) => {
           name="link"
           value={link}
           onChange={handleLinkChange}
-          onKeyDown={handleEnterKey}
         />
 
         <button
-          type="submit"
+          type="button"
           className="modal__button-save modal__button-save_log-in"
           onClick={() => {
             onOpenLoginModal();
             onClose();
           }}
-         
         >
           or Log In
         </button>
