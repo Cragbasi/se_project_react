@@ -24,11 +24,16 @@ import ProtectedRoute from "../utils/ProtectedRoute";
 import { ApiForAuthentication } from "../utils/auth.js";
 import { setToken, getToken } from "../utils/token.js";
 
+const baseUrl =
+  process.env.NODE_ENV === "production"
+    ? "https://api.cragbasi.blinklab.com"
+    : "http://localhost:3001";
+
 const apiClothingItems = new ApiForClothingItems({
-  baseUrl: "http://localhost:3001/items",
+  baseUrl: `${baseUrl}/items`,
 });
 const apiForAuthentication = new ApiForAuthentication({
-  baseUrl: "http://localhost:3001",
+  baseUrl: baseUrl,
 });
 
 function App() {
