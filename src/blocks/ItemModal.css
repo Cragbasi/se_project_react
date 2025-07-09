@@ -94,7 +94,9 @@
 .image-modal__delete-button_hidden {
   visibility: hidden;
 }
-
+.image-modal__delete-button:hover {
+  cursor: pointer;
+}
 .image-modal__button-close {
   padding: 0;
   background-color: transparent;

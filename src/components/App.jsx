@@ -239,6 +239,7 @@ function App() {
     const apiForWeather = new WeatherApi({
       baseUrl: `https://api.openweathermap.org/data/2.5/weather?lat=${coordinate.latitude}&lon=${coordinate.longitude}&units=imperial&appid=${APIkey}`,
     });
+    const jwt = getToken();
 
     apiForWeather
       .getInfo()
@@ -250,7 +251,7 @@ function App() {
       });
 
     apiClothingItems
-      .getItems()
+      .getItems(jwt)
       .then((res) => {
         setClothingItems(res);
       })
@@ -281,6 +282,7 @@ function App() {
                 />
               }
             />
+
             <Route
               path="/profile"
               element={

@@ -12,17 +12,16 @@ export class ApiForClothingItems {
     // if the server returns an error, reject the promise
     return Promise.reject(`Error: ${response.status}`);
   }
-
-  getItems() {
-    return fetch(`${this._options.baseUrl}`)
-      .then((res) => {
-        return this._checkResponse(res);
-      })
-      .then((res) => {
-        // console.log(res);
-        return res;
-      });
+  getItems(token) {
+    return fetch(`${this._options.baseUrl}`, {
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    }).then(this._checkResponse);
   }
+
   postItem(name, weather, imageUrl, token) {
     return fetch(`${this._options.baseUrl}`, {
       method: "POST",
