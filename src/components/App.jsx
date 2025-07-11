@@ -36,15 +36,20 @@ const apiForAuthentication = new ApiForAuthentication({
   baseUrl: baseUrl,
 });
 
+const apiForWeather = new WeatherApi({
+  baseUrl: `https://api.openweathermap.org/data/2.5/weather?lat=${coordinate.latitude}&lon=${coordinate.longitude}&units=imperial&appid=${APIkey}`,
+});
+
 function App() {
   // Add the isLoggedIn state variable with default value of 'false'.
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const [clothingItems, setClothingItems] = useState(defaultClothingItems);
+  const [clothingItems, setClothingItems] = useState([]);
 
   const handleAddItem = (item) => {
     console.log(item);
     const jwt = getToken();
+    console.log("token:", jwt);
     apiClothingItems
       .postItem(item.name, item.weather, item.link, jwt)
       .then((res) => {
@@ -86,7 +91,6 @@ function App() {
             setClothingItems((cards) =>
               cards.map((item) => (item._id === id ? updatedCard : item))
             );
-            console.log("here");
           })
           .catch((err) => console.log(err))
       : // if not, send a request to remove the user's id from the card's likes array
@@ -119,7 +123,7 @@ function App() {
       return;
     }
 
-    console.log("here:", jwt);
+    console.log("useeffect for jwt:", jwt);
 
     // TODO - handle JWT
     apiForAuthentication
@@ -138,8 +142,10 @@ function App() {
       .then((res) => {
         console.log("New sign up:", res);
         handleCloseSignUpModal();
-        setCurrentUser(res.data);
+        setCurrentUser(res.user);
         setIsLoggedIn(true);
+
+        setToken(res.token);
       })
       .catch((err) => {
         console.error("API error:", err);
@@ -236,11 +242,6 @@ function App() {
     setIsItemModalOpen(false);
   };
   useEffect(() => {
-    const apiForWeather = new WeatherApi({
-      baseUrl: `https://api.openweathermap.org/data/2.5/weather?lat=${coordinate.latitude}&lon=${coordinate.longitude}&units=imperial&appid=${APIkey}`,
-    });
-    const jwt = getToken();
-
     apiForWeather
       .getInfo()
       .then((res) => {
@@ -249,6 +250,13 @@ function App() {
       .catch((err) => {
         console.error("API error:", err);
       });
+  }, []);
+
+  useEffect(() => {
+    if (!isLoggedIn) return;
+    const jwt = getToken();
+    console.log("use effect for getItems. JWT:", jwt);
+    if (!jwt) return;
 
     apiClothingItems
       .getItems(jwt)
@@ -258,7 +266,7 @@ function App() {
       .catch((err) => {
         console.error("API error:", err);
       });
-  }, []);
+  }, [isLoggedIn]);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>

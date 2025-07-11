@@ -3,6 +3,7 @@ export class ApiForClothingItems {
     // constructor body
 
     this._options = options;
+    this._checkResponse = this._checkResponse.bind(this);
   }
 
   _checkResponse(response) {
@@ -12,7 +13,9 @@ export class ApiForClothingItems {
     // if the server returns an error, reject the promise
     return Promise.reject(`Error: ${response.status}`);
   }
+
   getItems(token) {
+    console.log("token at getItems:", token);
     return fetch(`${this._options.baseUrl}`, {
       headers: {
         Accept: "application/json",

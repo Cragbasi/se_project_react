@@ -9,6 +9,7 @@ export class WeatherApi {
     if (response.ok) {
       return response.json();
     }
+
     // if the server returns an error, reject the promise
     return Promise.reject(`Error: ${response.status}`);
   }
