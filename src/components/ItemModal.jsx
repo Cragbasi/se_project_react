@@ -13,9 +13,9 @@ function ItemModal({
 }) {
   const currentUser = useContext(CurrentUserContext);
   // Checking if the current user is the owner of the current clothing item
-  const isOwn = owner === currentUser._id;
+  const isOwn = owner === currentUser?._id;
 
-  // Creating a variable which you'll then set in `className` for the delete button
+  // Creating a variable which set in `className` for the delete button
   const itemDeleteButtonClassName = `image-modal__delete-button ${
     isOwn ? "" : "image-modal__delete-button_hidden"
   }`;
