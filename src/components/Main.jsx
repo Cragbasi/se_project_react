@@ -11,7 +11,7 @@ function Main({ weatherData, defaultClothingItems, onCardClick, onCardLike }) {
   }
 
   // Filter clothing items based on current weather
-  const filteredClothes = defaultClothingItems.filter((item) => {
+  const filteredClothesByWeather = defaultClothingItems.filter((item) => {
     return item.weather.toLowerCase() === weatherData.weatherType.toLowerCase();
   });
 
@@ -32,7 +32,7 @@ function Main({ weatherData, defaultClothingItems, onCardClick, onCardLike }) {
       </h2>
       <ul className="item-cards">
         {/* Map Filtered clothing items to DOM*/}
-        {filteredClothes.map((item) => (
+        {filteredClothesByWeather.map((item) => (
           <ItemCard
             key={item._id}
             item={item}

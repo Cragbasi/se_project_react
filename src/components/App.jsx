@@ -5,11 +5,7 @@ import CurrentUserContext from "../contexts/CurrentUserContext.jsx";
 import "../blocks/App.css";
 import { WeatherApi } from "../utils/WeatherApi.js";
 import { ApiForClothingItems } from "../utils/api.js";
-import {
-  coordinate,
-  APIkey,
-  defaultClothingItems,
-} from "../utils/constants.js";
+import { coordinate, APIkey } from "../utils/constants.js";
 import Header from "./Header";
 import Main from "./Main";
 import Footer from "./Footer";
@@ -23,7 +19,7 @@ import LoginModal from "./LoginModal.jsx";
 import ProtectedRoute from "../utils/ProtectedRoute";
 import { ApiForAuthentication } from "../utils/auth.js";
 import { setToken, getToken } from "../utils/token.js";
-
+// setToken("");
 const baseUrl =
   process.env.NODE_ENV === "production"
     ? "https://api.cragbasi.blinklab.com"

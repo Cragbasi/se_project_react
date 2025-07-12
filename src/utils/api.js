@@ -17,7 +17,6 @@ export class ApiForClothingItems {
   getItems() {
     return fetch(`${this._options.baseUrl}`, {
       headers: {
-        Accept: "application/json",
         "Content-Type": "application/json",
       },
     }).then(this._checkResponse);

@@ -17,7 +17,7 @@ function ClothesSection({
   const currentUser = useContext(CurrentUserContext);
   // Checking if the current user is the owner of the current clothing item
 
-  const filteredClothes = defaultClothingItems.filter((item) => {
+  const filteredClothesByUser = defaultClothingItems.filter((item) => {
     return item.owner === currentUser?._id;
   });
 
@@ -35,7 +35,7 @@ function ClothesSection({
       </div>
       <ul className="cards__container">
         {/* Map clothing items to DOM*/}
-        {filteredClothes.map((item) => (
+        {filteredClothesByUser.map((item) => (
           <ItemCard
             key={item._id}
             item={item}
