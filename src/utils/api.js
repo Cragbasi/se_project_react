@@ -14,16 +14,24 @@ export class ApiForClothingItems {
     return Promise.reject(`Error: ${response.status}`);
   }
 
-  getItems(token) {
-    console.log("token at getItems:", token);
+  getItems() {
     return fetch(`${this._options.baseUrl}`, {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
       },
     }).then(this._checkResponse);
   }
+  // getItems(token) {
+  //   console.log("token at getItems:", token);
+  //   return fetch(`${this._options.baseUrl}`, {
+  //     headers: {
+  //       Accept: "application/json",
+  //       "Content-Type": "application/json",
+  //       Authorization: `Bearer ${token}`,
+  //     },
+  //   }).then(this._checkResponse);
+  // }
 
   postItem(name, weather, imageUrl, token) {
     return fetch(`${this._options.baseUrl}`, {

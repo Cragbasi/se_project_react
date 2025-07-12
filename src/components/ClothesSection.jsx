@@ -1,5 +1,7 @@
 import "../blocks/Profile.css";
 import ItemCard from "./ItemCard";
+import { useContext } from "react";
+import CurrentUserContext from "../contexts/CurrentUserContext";
 
 function ClothesSection({
   weatherData,
@@ -11,6 +13,13 @@ function ClothesSection({
   if (!weatherData) {
     return <div>Loading...</div>;
   }
+
+  const currentUser = useContext(CurrentUserContext);
+  // Checking if the current user is the owner of the current clothing item
+
+  const filteredClothes = defaultClothingItems.filter((item) => {
+    return item.owner === currentUser?._id;
+  });
 
   return (
     <div className="cards">
@@ -26,12 +35,11 @@ function ClothesSection({
       </div>
       <ul className="cards__container">
         {/* Map clothing items to DOM*/}
-        {defaultClothingItems.map((item) => (
+        {filteredClothes.map((item) => (
           <ItemCard
             key={item._id}
             item={item}
             weatherData={weatherData}
-            defaultClothingItems={defaultClothingItems}
             onCardClick={onCardClick}
             onCardLike={onCardLike}
           />

@@ -37,7 +37,6 @@ function Main({ weatherData, defaultClothingItems, onCardClick, onCardLike }) {
             key={item._id}
             item={item}
             weatherData={weatherData}
-            defaultClothingItems={defaultClothingItems}
             onCardClick={onCardClick}
             onCardLike={onCardLike}
           />

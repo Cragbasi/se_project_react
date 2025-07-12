@@ -145,7 +145,7 @@ function App() {
         setCurrentUser(res.user);
         setIsLoggedIn(true);
 
-        setToken(res.token);
+        // setToken(res.token);
       })
       .catch((err) => {
         console.error("API error:", err);
@@ -252,14 +252,26 @@ function App() {
       });
   }, []);
 
+  // useEffect(() => {
+  //   if (!isLoggedIn) return;
+  //   const jwt = getToken();
+  //   console.log("use effect for getItems. JWT:", jwt);
+  //   if (!jwt) return;
+
+  //   apiClothingItems
+  //     .getItems(jwt)
+  //     .then((res) => {
+  //       setClothingItems(res);
+  //     })
+  //     .catch((err) => {
+  //       console.error("API error:", err);
+  //     });
+  // }, [isLoggedIn]);
   useEffect(() => {
     if (!isLoggedIn) return;
-    const jwt = getToken();
-    console.log("use effect for getItems. JWT:", jwt);
-    if (!jwt) return;
 
     apiClothingItems
-      .getItems(jwt)
+      .getItems()
       .then((res) => {
         setClothingItems(res);
       })
