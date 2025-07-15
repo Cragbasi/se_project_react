@@ -137,6 +137,7 @@ function App() {
       .signUp(item.name, item.link, item.email, item.password)
       .then((res) => {
         console.log("New sign up:", res);
+        handleLogIn(item);
         handleCloseSignUpModal();
         setCurrentUser(res.user);
         setIsLoggedIn(true);
